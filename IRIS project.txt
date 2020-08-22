@@ -1,0 +1,26 @@
+import sklearn
+import numpy as np
+from sklearn.datasets import load_iris
+iris =load_iris()
+iris.keys()
+print(iris['DESCR'])
+iris['target_names']
+iris['feature_names']
+type(iris['data'])
+iris['data'].shape
+iris['target']
+#measuring success (Training and testing data)
+from sklearn.model_selection import train_test_split
+X_train, X_test, y_train, y_test = train_test_split(iris['data'], iris['target'], random_state = 0)
+X_train.shape
+X_test.shape
+#using KNN classifier
+from sklearn.neighbors import KNeighborsClassifier
+knn = KNeighborsClassifier(n_neighbors = 1)
+knn.fit(X_train, y_train)
+X_new = np.array([[5, 2.9, 1, 0.2]])
+X_new.shape
+pred = knn.predict(X_new)
+pred
+iris['target_names'][pred]
+knn.score(X_test, y_test)
